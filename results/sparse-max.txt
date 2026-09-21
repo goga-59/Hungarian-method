@@ -1,0 +1,15 @@
+Input: examples/sparse.txt
+Mode: maximum
+Vertices: 4 + 4
+Weight matrix:
+8 3 x x
+2 x 5 x
+x 4 x 1
+x x 2 6
+
+Matching:
+L1 -> R1 (weight: 8)
+L2 -> R3 (weight: 5)
+L3 -> R2 (weight: 4)
+L4 -> R4 (weight: 6)
+Optimal weight: 23

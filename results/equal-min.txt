@@ -1,0 +1,13 @@
+Input: examples/equal.txt
+Mode: minimum
+Vertices: 3 + 3
+Weight matrix:
+2 2 2
+2 2 2
+2 2 2
+
+Matching:
+L1 -> R1 (weight: 2)
+L2 -> R2 (weight: 2)
+L3 -> R3 (weight: 2)
+Optimal weight: 6
