@@ -1,10 +1,10 @@
 Input: examples/equal.txt
 Mode: maximum
-Vertices: 3 + 3
 Weight matrix:
-2 2 2
-2 2 2
-2 2 2
+   R1 R2 R3
+L1  2  2  2
+L2  2  2  2
+L3  2  2  2
 
 Matching:
 L1 -> R1 (weight: 2)

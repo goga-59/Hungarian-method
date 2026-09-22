@@ -1,0 +1,27 @@
+Input: examples/matrix-10.txt
+Mode: minimum
+Weight matrix:
+     R1  R2  R3  R4  R5  R6  R7  R8  R9 R10
+ L1   9   2   7   8   6   4   3   7   5   8
+ L2   6   4   3   7   5   8   1   8   6   4
+ L3   5   8   1   8   3   6   7   4   2   9
+ L4   7   6   9   4   2   3   8   5   1   6
+ L5   8   5   2   9   7   1   4   6   3   5
+ L6   4   7   6   3   8   5   9   2   6   1
+ L7   3   1   8   6   4   7   5   9   8   2
+ L8   9   6   4   2   1   8   6   3   7   5
+ L9   2   9   5   1   6   4   8   7   3   6
+L10   6   3   7   5   9   2   1   4   8   7
+
+Matching:
+L1 -> R2 (weight: 2)
+L2 -> R7 (weight: 1)
+L3 -> R3 (weight: 1)
+L4 -> R9 (weight: 1)
+L5 -> R6 (weight: 1)
+L6 -> R10 (weight: 1)
+L7 -> R1 (weight: 3)
+L8 -> R5 (weight: 1)
+L9 -> R4 (weight: 1)
+L10 -> R8 (weight: 4)
+Optimal weight: 16

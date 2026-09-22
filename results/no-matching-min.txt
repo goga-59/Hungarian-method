@@ -1,9 +1,9 @@
 Input: examples/no-matching.txt
 Mode: minimum
-Vertices: 3 + 3
 Weight matrix:
-1 x x
-2 x x
-x 3 4
+   R1 R2 R3
+L1  1  x  x
+L2  2  x  x
+L3  x  3  4
 
 No perfect matching exists.

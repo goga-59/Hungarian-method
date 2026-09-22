@@ -40,30 +40,9 @@ fun main(args: Array<String>) {
 
         val weights = input.bufferedReader().use(::readWeights)
         val matching = hungarian(weights, maximize = mode == "max")
-
-        val report = buildString {
-            appendLine("Input: ${input.toString().replace('\\', '/')}")
-            appendLine("Mode: ${if (mode == "min") "minimum" else "maximum"}")
-            appendLine("Vertices: ${weights.size} + ${weights.size}")
-            appendLine("Weight matrix:")
-            weights.forEach { row -> appendLine(row.joinToString(" ") { it?.toString() ?: "x" }) }
-            appendLine()
-
-            if (matching == null) {
-                appendLine("No perfect matching exists.")
-            } else {
-                appendLine("Matching:")
-
-                matching.matchedColumns.forEachIndexed { row, column ->
-                    appendLine("L${row + 1} -> R${column + 1} (weight: ${weights[row][column]})")
-                }
-
-                appendLine("Optimal weight: ${matching.totalWeight}")
-            }
-        }
+        val report = createReport(input.toString().replace('\\', '/'), mode, weights, matching)
 
         val output = Path("results") / "${input.nameWithoutExtension}-$mode.txt"
-
         output.parent.createDirectories()
         output.writeText(report)
 
@@ -77,3 +56,35 @@ fun main(args: Array<String>) {
         exitProcess(1)
     }
 }
+
+private fun createReport(input: String, mode: String, weights: List<List<Int?>>, matching: Matching?): String =
+    buildString {
+        appendLine("Input: $input")
+        appendLine("Mode: ${if (mode == "min") "minimum" else "maximum"}")
+
+        appendLine("Weight matrix:")
+        val cellWidth = maxOf("R${weights.size}".length, weights.flatten().maxOf { (it?.toString() ?: "x").length })
+
+        val rowLabelWidth = "L${weights.size}".length
+        appendLine(" ".repeat(rowLabelWidth + 1) + weights.indices.joinToString(" ") { "R${it + 1}".padStart(cellWidth) })
+
+        weights.forEachIndexed { rowIndex, row ->
+            appendLine("L${rowIndex + 1}".padStart(rowLabelWidth) + " " + row.joinToString(" ") {
+                (it?.toString() ?: "x").padStart(cellWidth)
+            })
+        }
+
+        appendLine()
+
+        if (matching == null) {
+            appendLine("No perfect matching exists.")
+        } else {
+            appendLine("Matching:")
+
+            matching.matchedColumns.forEachIndexed { row, column ->
+                appendLine("L${row + 1} -> R${column + 1} (weight: ${weights[row][column]})")
+            }
+
+            appendLine("Optimal weight: ${matching.totalWeight}")
+        }
+    }
