@@ -142,7 +142,7 @@ Optimal weight: 5
 
 | Матрица весов | Минимальный вес | Максимальный вес | Полные паросочетания |
 |:---:|:---:|:---:|:---:|
-| −5 −1 −3<br>2 −4 0<br>1 3 −2 | [−11](results/negative-min.txt) | [2](results/negative-max.txt) | **min:** L1–R1, L2–R2, L3–R3<br>**max:** L1–R3, L2–R1, L3–R2 |
+| −5 −1 −3<br>&#8199;2 −4 &#8199;0<br>&#8199;1 &#8199;3 −2 | [−11](results/negative-min.txt) | [2](results/negative-max.txt) | **min:** L1–R1, L2–R2, L3–R3<br>**max:** L1–R3, L2–R1, L3–R2 |
 | 8 3 x x<br>2 x 5 x<br>x 4 x 1<br>x x 2 6 | [8](results/sparse-min.txt) | [23](results/sparse-max.txt) | **min:** L1–R2, L2–R1, L3–R4, L4–R3<br>**max:** L1–R1, L2–R3, L3–R2, L4–R4 |
 | 2 2 2<br>2 2 2<br>2 2 2 | [6](results/equal-min.txt) | [6](results/equal-max.txt) | **min/max:** L1–R1, L2–R2, L3–R3 |
 | 1 x x<br>2 x x<br>x 3 4 | [Нет решения](results/no-matching-min.txt) | [Нет решения](results/no-matching-max.txt) | Не существует |
