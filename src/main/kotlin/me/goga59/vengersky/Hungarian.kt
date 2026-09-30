@@ -8,11 +8,11 @@ fun hungarian(weights: List<List<Int?>>, maximize: Boolean = false): Matching? {
     val size = weights.size
     require(size > 0 && weights.all { it.size == size }) { "Weight matrix must be nonempty and square" }
 
-    // Алгоритм решает задачу минимизации, поэтому для максимизации меняем знак весов: max(weight) = min(-weight)
+    // Максимизацию сводим к минимизации сменой знака весов
     fun cost(weight: Int): Long = if (maximize) -weight.toLong() else weight.toLong()
 
-    val rowPotential = LongArray(size + 1) // Потенциалы строк
-    val columnPotential = LongArray(size + 1) // Потенциалы столбцов
+    val rowPotential = LongArray(size + 1)
+    val columnPotential = LongArray(size + 1)
 
     // matchedRowByColumn[column] = строка, назначенная этому столбцу
     val matchedRowByColumn = IntArray(size + 1)
@@ -65,7 +65,6 @@ fun hungarian(weights: List<List<Int?>>, maximize: Boolean = false): Matching? {
             // Если ни до одного нового столбца добраться невозможно, то полного паросочетания нет
             if (minDelta == Long.MAX_VALUE) return null
 
-            // Корректируем потенциалы
             for (column in 0..size) {
                 if (visitedColumns[column]) {
                     rowPotential[matchedRowByColumn[column]] += minDelta
@@ -76,8 +75,6 @@ fun hungarian(weights: List<List<Int?>>, maximize: Boolean = false): Matching? {
             }
 
             currentColumn = nextColumn
-
-            // Если столбец свободен поиск заканчивается, иначе пытаемся переставить уже назначенную строку
         } while (matchedRowByColumn[currentColumn] != 0)
 
         // Свободный столбец найден - идём назад и перестраиваем назначения
